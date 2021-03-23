@@ -196,10 +196,10 @@ async function downloadTrack(trackUrl) {
     // If we want to download in HQ, read the auth cookie so
     // we can see HQ transcodings
     let authToken = null;
-    let settings = await browser.storage.sync.get("enableHQ");
-    if (settings["enableHQ"]) {
+    // let settings = await browser.storage.sync.get("enableHQ");
+    // if (settings["enableHQ"]) {
         authToken = getCookie("oauth_token");
-    }
+    // }
 
     // Resolve the track URL to a track object
     let trackObj = await fetchAuthorizedJson(
@@ -258,7 +258,7 @@ function injectDownloadButton(elem) {
     let actionDivs = elem.querySelectorAll(".soundActions");
     for (let actionDiv of actionDivs) {
         // Check that we don't already have a download button
-        if (actionDiv.querySelector(".sc-button-download") !== null) {
+        if (actionDiv.querySelector(".sc-button-download-asdf") !== null) {
             continue;
         }
 
@@ -280,7 +280,7 @@ function injectDownloadButton(elem) {
         let button = document.createElement("button");
         button.className = likeButton.className.replace(
             "sc-button-like",
-            "sc-button-download"
+            "sc-button-download-asdf"
         );
         button.classList.remove("sc-button-selected");
         button.innerText = "Download";
@@ -348,7 +348,7 @@ async function init() {
             }
         }
     });
-    
+
     observer.observe(document.body, {
         childList: true,
         subtree: true,
